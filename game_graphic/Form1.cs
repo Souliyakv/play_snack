@@ -32,7 +32,7 @@ namespace game_graphic
         bool goLeft, goRight, goDown, goUp;
 
         FirestoreDb database;
-        CollectionReference coll;
+        public string userID;
         public Form1()
         {
             InitializeComponent();
@@ -97,8 +97,8 @@ namespace game_graphic
                     if (documentSnapshot.Exists)
                     {
                         // Console.WriteLine("Document ID: " + documentSnapshot.Id);
-                        Console.WriteLine("Document Data: X" + documentSnapshot.ToDictionary()["X"]);
-                        Console.WriteLine("Document Data: Y" + documentSnapshot.ToDictionary()["Y"]);
+                      // Console.WriteLine("Document Data: X" + documentSnapshot.ToDictionary()["X"]);
+                      //  Console.WriteLine("Document Data: Y" + documentSnapshot.ToDictionary()["Y"]);
                         var foodx = documentSnapshot.ToDictionary()["X"];
                         var foody = documentSnapshot.ToDictionary()["Y"];
                         food = new Circle { X =Convert.ToInt32(foodx) , Y = Convert.ToInt32(foody) };
@@ -110,6 +110,31 @@ namespace game_graphic
                     }
                 }
             });
+
+            CollectionReference collectionPlayer = database.Collection("player");
+            collectionPlayer.Listen(snap =>
+            {
+
+            foreach (DocumentChange change in snap.Changes)
+            {
+                DocumentSnapshot documentSnap = change.Document;
+                if (documentSnap.Exists)
+                {
+                    // Console.WriteLine("Document ID: " + documentSnapshot.Id);
+                  //  Console.WriteLine("Document Data: X" + documentSnap.ToDictionary()["name"]);
+                  //  Console.WriteLine("Document Data: Y" + documentSnap.ToDictionary()["score"]);
+                    var name = documentSnap.ToDictionary()["name"];
+                    var score = documentSnap.ToDictionary()["score"];
+
+                    }
+
+                    else
+                    {
+                        Console.WriteLine("Document deleted: " + documentSnap.Id);
+                    }
+                }
+            });
+
         }
 
         private async void StartGame(object sender, EventArgs e)
@@ -279,6 +304,8 @@ namespace game_graphic
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            label2.Text = join.name;
+            userID = join.newDocumentId;
             string path = AppDomain.CurrentDomain.BaseDirectory + @"snack-game-ad849-firebase-adminsdk-m98k9-84f96a833d.json";
             Environment.SetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS", path);
             database = FirestoreDb.Create("snack-game-ad849");
@@ -325,6 +352,11 @@ namespace game_graphic
             }
         }
 
+        private void label2_Click(object sender, EventArgs e)
+        {
+            
+        }
+
         private void RestartGame()
         {
 
@@ -360,7 +392,6 @@ namespace game_graphic
             score += 1;
 
             txtScore.Text = "Score: " + score;
-            Console.WriteLine(score);
 
             Circle body = new Circle
             {
@@ -369,8 +400,18 @@ namespace game_graphic
             };
 
            Snake.Add(body);
+            DocumentReference docRefScore = database.Collection("player").Document(userID);
 
-           // food = new Circle { X = rand.Next(2, maxWidth), Y = rand.Next(2, maxHeight) };
+            var updatesScore = new Dictionary<FieldPath, object>
+    {
+       // { new FieldPath("X"), rand.Next(2, maxWidth) },
+        { new FieldPath("score"), score},
+        // Add more field updates as needed
+    };
+
+            docRefScore.UpdateAsync(updatesScore);
+
+            // food = new Circle { X = rand.Next(2, maxWidth), Y = rand.Next(2, maxHeight) };
 
             DocumentReference docRef = database.Collection("users").Document("b6gGjObddDW0GTuU3s9a");
 

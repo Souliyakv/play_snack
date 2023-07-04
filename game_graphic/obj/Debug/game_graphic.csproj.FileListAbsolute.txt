@@ -91,3 +91,4 @@ C:\Users\comcu\OneDrive\Desktop\programing\C#\game_graphic\game_graphic\bin\Debu
 C:\Users\comcu\OneDrive\Desktop\programing\C#\game_graphic\game_graphic\bin\Debug\System.ValueTuple.xml
 C:\Users\comcu\OneDrive\Desktop\programing\C#\game_graphic\game_graphic\obj\Debug\game_graphic.csproj.CopyComplete
 C:\Users\comcu\OneDrive\Desktop\programing\C#\game_graphic\game_graphic\bin\Debug\snack-game-ad849-firebase-adminsdk-m98k9-84f96a833d.json
+C:\Users\comcu\OneDrive\Desktop\programing\C#\game_graphic\game_graphic\obj\Debug\game_graphic.join.resources
