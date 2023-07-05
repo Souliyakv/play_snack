@@ -356,7 +356,6 @@ namespace game_graphic
             Snake.Clear();
 
             startButton.Enabled = false;
-            snapButton.Enabled = false;
 
             score = 0;
             txtScore.Text = "Score: " + score;
@@ -424,7 +423,6 @@ namespace game_graphic
         {
             gameTimer.Stop();
             startButton.Enabled = true;
-            snapButton.Enabled = true;
             string soundfilePath = "gameover.wav";
             var sound = new SoundPlayer(soundfilePath);
             sound.Play();
