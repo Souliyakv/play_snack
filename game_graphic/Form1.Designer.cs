@@ -32,7 +32,6 @@
             this.txtHighScore = new System.Windows.Forms.Label();
             this.txtScore = new System.Windows.Forms.Label();
             this.picCanvas = new System.Windows.Forms.PictureBox();
-            this.snapButton = new System.Windows.Forms.Button();
             this.startButton = new System.Windows.Forms.Button();
             this.gameTimer = new System.Windows.Forms.Timer(this.components);
             this.label1 = new System.Windows.Forms.Label();
@@ -44,7 +43,7 @@
             // 
             this.txtHighScore.AutoSize = true;
             this.txtHighScore.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtHighScore.Location = new System.Drawing.Point(822, 253);
+            this.txtHighScore.Location = new System.Drawing.Point(820, 170);
             this.txtHighScore.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.txtHighScore.Name = "txtHighScore";
             this.txtHighScore.Size = new System.Drawing.Size(119, 25);
@@ -55,7 +54,7 @@
             // 
             this.txtScore.AutoSize = true;
             this.txtScore.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtScore.Location = new System.Drawing.Point(899, 206);
+            this.txtScore.Location = new System.Drawing.Point(880, 123);
             this.txtScore.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.txtScore.Name = "txtScore";
             this.txtScore.Size = new System.Drawing.Size(94, 25);
@@ -72,19 +71,6 @@
             this.picCanvas.TabIndex = 5;
             this.picCanvas.TabStop = false;
             this.picCanvas.Paint += new System.Windows.Forms.PaintEventHandler(this.UpdatePictureBoxGraphics);
-            // 
-            // snapButton
-            // 
-            this.snapButton.BackColor = System.Drawing.Color.PaleGreen;
-            this.snapButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.snapButton.Location = new System.Drawing.Point(813, 104);
-            this.snapButton.Margin = new System.Windows.Forms.Padding(4);
-            this.snapButton.Name = "snapButton";
-            this.snapButton.Size = new System.Drawing.Size(152, 69);
-            this.snapButton.TabIndex = 3;
-            this.snapButton.Text = "Snap";
-            this.snapButton.UseVisualStyleBackColor = false;
-            this.snapButton.Click += new System.EventHandler(this.snapButton_Click);
             // 
             // startButton
             // 
@@ -117,7 +103,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Phetsarath OT", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(837, 205);
+            this.label2.Location = new System.Drawing.Point(818, 122);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(66, 29);
             this.label2.TabIndex = 9;
@@ -134,7 +120,6 @@
             this.Controls.Add(this.txtHighScore);
             this.Controls.Add(this.txtScore);
             this.Controls.Add(this.picCanvas);
-            this.Controls.Add(this.snapButton);
             this.Controls.Add(this.startButton);
             this.Name = "Form1";
             this.Text = "Form1";
@@ -152,7 +137,6 @@
         private System.Windows.Forms.Label txtHighScore;
         private System.Windows.Forms.Label txtScore;
         private System.Windows.Forms.PictureBox picCanvas;
-        private System.Windows.Forms.Button snapButton;
         private System.Windows.Forms.Button startButton;
         private System.Windows.Forms.Timer gameTimer;
         private System.Windows.Forms.Label label1;
