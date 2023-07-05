@@ -8,7 +8,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Google.Cloud.Firestore;
-using System.Drawing.Imaging; // add this for the JPG compressor
+using System.Drawing.Imaging;
+using System.Media;
+using System.IO;
 
 namespace game_graphic
 {
@@ -33,12 +35,21 @@ namespace game_graphic
 
         FirestoreDb database;
         public string userID;
+        string soundfile;
         public Form1()
         {
             InitializeComponent();
+            
 
             new Settings();
 
+        }
+
+        private void play()
+        {
+          //  byte[] bt = File.ReadAllBytes(soundfile);
+            var sound = new SoundPlayer(soundfile);
+            sound.PlayLooping();
         }
 
         private void KeyIsDown(object sender, KeyEventArgs e)
@@ -141,6 +152,8 @@ namespace game_graphic
         {
             SubscribeToRealtimeUpdates();
             RestartGame();
+            soundfile = "sound.wav";
+            play();
         }
 
         private void TakeSnapShot(object sender, EventArgs e)
@@ -326,7 +339,7 @@ namespace game_graphic
         private void snapButton_Click(object sender, EventArgs e)
         {
             Label caption = new Label();
-            caption.Text = "I scored: " + score + " and my Highscore is " + highScore + " on the Snake Game from MOO ICT";
+            caption.Text = "I scored: " + score + " and my Highscore is " + highScore + " on the Snake Game";
             caption.Font = new Font("Ariel", 12, FontStyle.Bold);
             caption.ForeColor = Color.Purple;
             caption.AutoSize = false;
@@ -392,6 +405,9 @@ namespace game_graphic
             score += 1;
 
             txtScore.Text = "Score: " + score;
+            string soundfilePath = "eat.wav";
+            var sound = new SoundPlayer(soundfilePath);
+            sound.Play();
 
             Circle body = new Circle
             {
@@ -423,6 +439,8 @@ namespace game_graphic
     };
 
             docRef.UpdateAsync(updates);
+            soundfile = "sound.wav";
+            play();
 
         }
 
@@ -431,6 +449,9 @@ namespace game_graphic
             gameTimer.Stop();
             startButton.Enabled = true;
             snapButton.Enabled = true;
+            string soundfilePath = "gameover.wav";
+            var sound = new SoundPlayer(soundfilePath);
+            sound.Play();
 
             if (score > highScore)
             {
